@@ -90,48 +90,7 @@ const Header = () => {
             };
           }}
           to="/allArt&Craft" className="flex items-center text-[#150B2BB3]">
-          All Art & Craft Items
-        </NavLink>
-      </Typography>
-
-      <Typography
-        as="li"
-        variant="large"
-        color="blue-gray"
-        className={`p-1 text-sm`}
-      >
-        <NavLink
-          style={({ isActive, isTransitioning }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              color: isActive ? "red" : "black",
-              viewTransitionName: isTransitioning ? "slide" : "",
-            };
-          }}
-          to="/addItem" className="flex items-center text-[#150B2BB3]">
-          Add Item
-        </NavLink>
-      </Typography>
-
-
-
-
-      <Typography
-        as="li"
-        variant="large"
-        color="blue-gray"
-        className={`p-1 text-sm`}
-      >
-        <NavLink
-          style={({ isActive, isTransitioning }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              color: isActive ? "red" : "black",
-              viewTransitionName: isTransitioning ? "slide" : "",
-            };
-          }}
-          to="/myList" className="flex items-center text-[#150B2BB3]">
-          My List
+           Queries
         </NavLink>
       </Typography>
 
@@ -196,13 +155,54 @@ const Header = () => {
             {
               user ?
                 <>
-                  <div className="flex items-center space-x-2">
+                  {/* <div className="flex items-center space-x-2">
 
                     <img data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} src={user.photoURL} alt="" className="w-[60px] h-[60px] object-cover rounded-full" />
                     <Tooltip id="my-tooltip" />
 
                     <Button onClick={handleSignOut} className={`bg-[#59C6D2]`}>Log out</Button>
-                  </div>
+                  </div> */}
+            <div className='dropdown dropdown-end z-50'>
+            <div
+              tabIndex={0}
+              role='button'
+              className='btn btn-ghost btn-circle avatar'
+            >
+              <div data-tooltip-place="right" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} className='w-10 rounded-full'>
+                <img
+                  referrerPolicy='no-referrer'
+                  alt='User Profile Photo'
+                  src={user?.photoURL}
+                />
+                 <Tooltip id="my-tooltip" />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-52'
+            >
+              <li>
+                <Link to='/addItem' className='justify-between'>
+                Recommendations For Me
+                </Link>
+              </li>
+              <li>
+                <Link to='/my-posted-jobs'>My Queries</Link>
+              </li>
+              <li>
+                <Link to='/my-bids'>My Recommendations</Link>
+              </li>
+            
+              <li className='mt-2'>
+                <Button
+                  onClick={handleSignOut}
+                  className=' block text-center'
+                >
+                  Logout
+                </Button>
+              </li>
+            </ul>
+          </div>
 
                 </>
                 :
