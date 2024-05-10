@@ -1,16 +1,17 @@
-import logo from "../../../assets/Logo.jpg"
+import logo from "../../../../public/logo.png"
 const Footer = () => {
   return (
     <footer className="mt-8">
     <div className="mx-auto max-w-7xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
       <div className="grid grid-cols-1 text-center lg:text-left gap-8 lg:grid-cols-3">
         <div>
-          <div className="text-teal-600 flex lg:justify-start justify-center">
-          <img src={logo} className="w-[60px] h-[60px] rounded-full" />
+          <div className="text-teal-600 flex items-center lg:justify-start justify-center">
+
+          <img src={logo} className="w-[130px] h-[27px]" />
           </div>
           <div >
           <p className="mt-4 max-w-2xl  lg:max-w-xs text-gray-500">
-          Discover an exceptional arts and crafts tailored for you!
+          The suite of products that helps you and your supply chain to create and share engaging omnichannel product experiences.
           </p>
             </div> 
        
@@ -99,17 +100,20 @@ const Footer = () => {
   
             <ul className="mt-6 space-y-4 text-sm">
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">
+                 1on1 Coaching Product</a>
               </li>
   
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">
+                 Company Review </a>
               </li>
   
         
   
               <li>
-                <a href="#" className="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
+                <a href="#" className="text-gray-700 transition hover:opacity-75">
+                Product Activation </a>
               </li>
   
   
@@ -173,7 +177,7 @@ const Footer = () => {
         </div>
       </div>
   
-      <p className="text-xs text-gray-500 text-center">&copy; 2024. Modern Arts & Crafts. All rights reserved.</p>
+      <p className="text-xs text-gray-500 text-center">&copy; 2024. Product Navigator. All rights reserved.</p>
     </div>
   </footer>
   );

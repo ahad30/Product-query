@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import logo from "../../../assets/Logo.jpg"
+import logo from "../../../../public/logo.png"
 import {
   Navbar,
   MobileNav,
@@ -129,8 +129,12 @@ const Header = () => {
               as="a"
               className="mr-7 cursor-pointer py-1.5 font-medium"
             >
-              <NavLink to="/">
-                <img src={logo} className="w-[60px] h-[60px] rounded-full" />
+              <NavLink to="/" className={``}>
+        
+                <img src={logo} className="w-[130px] h-[27px] rounded-full" />
+           
+            
+        
               </NavLink>
             </Typography>
           </div>

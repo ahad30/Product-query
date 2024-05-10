@@ -1,125 +1,25 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y , Autoplay} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/bundle';
-import Image1 from '../../assets/Banner-1.jpg'
-import Image2 from '../../assets/Banner-2.jpg'
-import Image3 from '../../assets/Banner-3.jpg'
-const Banner = () => {
+import React from 'react'
+
+export const Banner = () => {
   return (
-    <Swiper
-
-    modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-    spaceBetween={50}
-    slidesPerView={1}
-    navigation
-    loop ={true}
-    autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-    pagination={{ clickable: true }}
-  >
-      <SwiperSlide>
-      <section
-    className="bg-gray-900 text- mb-10  bg-no-repeat bg-cover 
-    h-[600px] lg:h-[500px] bg-center"  style={{backgroundImage: `url(${Image1})`}}>
-    <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
-        <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl">
-          Unique Arts & Crafts Here
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-      lets share your thoughts into modern arts & crafts
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <div>
-                <a className="block w-full  px-6 py-3 bg-[#0BE58A]  font-bold  border-[#1DD10066] lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                    Explore Now
-                </a>
-                </div>
-                <div>
-                <a className="block w-full  px-6 py-3 bg-transparent  font-bold border border-black lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                   Our Feedback
-                </a>
-                </div>
+    <div className="container px-6 py-16 mx-auto">
+    <div className="items-center lg:flex">
+        <div className="w-full lg:w-1/2">
+            <div className="lg:max-w-lg">
+                <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Best place to find your<br/>  <span className="text-blue-500 ">best product</span></h1>
+                
+                <p className="mt-3 text-gray-600 dark:text-gray-400">
+"Discover Your Perfect Match: Your one-stop destination for finding top-tier products tailored to your needs."</p>
+                
+                <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                See Queries</button>
             </div>
         </div>
-    </div>
-    </section>
-      </SwiperSlide>
-      <SwiperSlide>
-      <section
-    className="bg-gray-900 text-black mb-10  bg-no-repeat bg-cover 
-    h-[600px] lg:h-[500px] bg-center"  style={{backgroundImage: `url(${Image2})`}}>
-    <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
-        <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl ">
-           Unique Arts & Crafts Here
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-         lets share your thoughts into modern arts & crafts
-            </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <div>
-                <a className="block w-full  px-6 py-3 bg-[#0BE58A]  font-bold  border-[#1DD10066] lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                    Explore Now
-                </a>
-                </div>
-                <div>
-                <a className="block w-full  px-6 py-3 bg-transparent  font-bold border border-black lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                   Our Feedback
-                </a>
-                </div>
-            </div>
+        <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+            <img className="w-full h-full lg:max-w-3xl" src="https://merakiui.com/images/components/Catalogue-pana.svg" alt="Catalogue-pana.svg"/>
         </div>
     </div>
-    </section>
-  
-  </SwiperSlide>
-      <SwiperSlide>
-      <section
-    className="bg-gray-900 text-black mb-10  bg-no-repeat bg-cover 
-    h-[600px] lg:h-[500px] bg-center"  style={{backgroundImage: `url(${Image3})`}}>
-    <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
-        <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl ">
-           Unique Arts & Crafts Here
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-         lets share your thoughts into modern arts & crafts
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <div>
-                <a className="block w-full  px-6 py-3 bg-[#0BE58A]  font-bold  border-[#1DD10066] lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                    Explore Now
-                </a>
-                </div>
-                <div>
-                <a className="block w-full  px-6 py-3 bg-transparent  font-bold border border-black lg:text-lg  text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto rounded-full"
-                    href="">
-                   Our Feedback
-                </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
-      </SwiperSlide>
-
-    </Swiper>
-
-
- 
+</div>
   )
 }
-
-export default Banner
