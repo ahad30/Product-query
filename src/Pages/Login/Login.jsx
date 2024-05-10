@@ -67,10 +67,10 @@ const Login = () => {
       console.error(error)
     })
    }
-   catch (err) {
-    console.log(err)
-    toast.error(err?.message)
-  }
+    catch (err) {
+      console.log(err)
+      toast.error(err?.message)
+    }
   }
 
   const handleGithubSignIn = () => {

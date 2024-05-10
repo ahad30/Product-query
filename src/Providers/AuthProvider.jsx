@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
 
     const logOut =async () => {
-        setLoading(true);
+        // setLoading(true);
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
             withCredentials: true,
           })
