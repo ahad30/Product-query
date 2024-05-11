@@ -9,11 +9,11 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import AllArtCraftItem from "../Pages/AllArtCraftItem/AllArtCraftItem";
 // import AddArtCarftItem from "../Pages/AddArtCarftItem/AddArtCarftItem";
-import MyListItems from "../Pages/MyListItems/MyListItems";
 import ArtCraftDetails from "../Pages/Home/ArtCraftDetails/ArtCraftDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
 import ArtCraftCategoryDetails from "../Pages/Home/ArtCraftCategoryDetails/ArtCraftCategoryDetails";
 import AddQuery from "../Pages/AddQuery/AddQuery";
+import MyQueryList from "../Pages/MyQueryList/MyQueryList";
 
 export const routes = createBrowserRouter([
   {
@@ -58,17 +58,17 @@ export const routes = createBrowserRouter([
 
 
       {
-        path: "/addItem",
+        path: "/addQuery",
         element: 
        <PrivateRoute>
          <AddQuery/>
        </PrivateRoute>
       },
       {
-        path: "/myList",
+        path: "/myQueryList",
         element: 
        <PrivateRoute>
-         <MyListItems/>
+         <MyQueryList/>
        </PrivateRoute>
       },
 

@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 
-const MyListItems = () => {
+const MyQueryList = () => {
   const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    fetch(`https://b9a10-server-side-ahad30.vercel.app/myArtCraft/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -50,37 +50,33 @@ const MyListItems = () => {
     });
   };
 
-  // Filter the items based on the selected option
-  const filteredItems = items.filter((item) => {
-    if (filter === '') {
-      return true; // Show all items when no filter is selected
-    } else if (filter === 'All') {
-      return true; // Show all items when 'All' is selected
-    } else {
-      return item.customization === filter; // Filter based on the selected option
-    }
-  });
+
 
   return (
     <div className='mb-5'>
-      <h1 className='text-center text-3xl font-bold mt-5 mb-5'>My Craft Items</h1>
+      <h1 className='text-center text-3xl font-bold mt-5 mb-5'>My Query Items</h1>
 
-      <div className='flex justify-center mt-5 mb-5'>
-        <select
-          className='rounded-lg border-2 border-gray-500 p-2'
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value=''>Customization</option>
-          <option value='All'>All</option>
-          <option value='yes'>Yes</option>
-          <option value='no'>No</option>
-        </select>
-      </div>
-      {filteredItems.length === 0 ? (
+      {/* const newQueryItem = {
+      image,
+      itemName,
+      brandName,
+      queryTitle,
+      shortDescription,
+      deadline,
+      posterInfo: {
+        userEmail,
+        userName,
+        photo
+      },
+      recommendation_count: 0,
+    }; */}
+
+
+      {/* { items.length === 0 ? (
         <p className='text-center text-red-400 font-bold'>No data found.</p>
       ) : (
         <div className='w-[98%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {filteredItems.map((item) => (
+          {items.map((item) => (
             <div key={item._id}>
               <div className='overflow-hidden rounded-3xl shadow transition hover:shadow-lg'>
                 <div className=''>
@@ -127,9 +123,9 @@ const MyListItems = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
 
-export default MyListItems;
+export default MyQueryList;

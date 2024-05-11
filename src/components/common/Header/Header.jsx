@@ -90,7 +90,7 @@ const Header = () => {
             };
           }}
           to="/allArt&Craft" className="flex items-center text-[#150B2BB3]">
-           Queries
+          Queries
         </NavLink>
       </Typography>
 
@@ -130,11 +130,11 @@ const Header = () => {
               className="mr-7 cursor-pointer py-1.5 font-medium"
             >
               <NavLink to="/" className={``}>
-        
+
                 <img src={logo} className="w-[130px] h-[27px] rounded-full" />
-           
-            
-        
+
+
+
               </NavLink>
             </Typography>
           </div>
@@ -166,47 +166,96 @@ const Header = () => {
 
                     <Button onClick={handleSignOut} className={`bg-[#59C6D2]`}>Log out</Button>
                   </div> */}
-            <div className='dropdown dropdown-end z-50'>
-            <div
-              tabIndex={0}
-              role='button'
-              className='btn btn-ghost btn-circle avatar'
-            >
-              <div data-tooltip-place="right" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} className='w-10 rounded-full'>
-                <img
-                  referrerPolicy='no-referrer'
-                  alt='User Profile Photo'
-                  src={user?.photoURL}
-                />
-                 <Tooltip id="my-tooltip" />
-              </div>
-            </div>   
-            <ul
-              tabIndex={0}
-              className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-52'
-            >
-              <li>
-                <Link to='/addItem' className='justify-between'>
-                Recommendations For Me
-                </Link>
-              </li>
-              <li>
-                <Link to='/my-posted-jobs'>My Queries</Link>
-              </li>
-              <li>
-                <Link to='/my-bids'>My Recommendations</Link>
-              </li>
-            
-              <li className='mt-2'>
-                <Button
-                  onClick={handleSignOut}
-                  className=' block text-center'
-                >
-                  Logout
-                </Button>
-              </li>
-            </ul>
-          </div>
+                  <div className='dropdown dropdown-end z-50'>
+                    <div
+                      tabIndex={0}
+                      role='button'
+                      className='btn btn-ghost btn-circle avatar'
+                    >
+                      <div data-tooltip-place="right" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} className='w-10 rounded-full'>
+                        <img
+                          referrerPolicy='no-referrer'
+                          alt='User Profile Photo'
+                          src={user?.photoURL}
+                        />
+                        <Tooltip id="my-tooltip" />
+                      </div>
+                    </div>
+                    <ul
+                      tabIndex={0}
+                      className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-52'
+                    >
+                      <li>
+                        <Typography
+                          as="li"
+                          variant="large"
+                          color="blue-gray"
+                          className={`p-1 text-sm`}
+                        >
+                          <NavLink
+                            style={({ isActive, isTransitioning }) => {
+                              return {
+                                fontWeight: isActive ? "bold" : "",
+                                color: isActive ? "red" : "black",
+                                viewTransitionName: isTransitioning ? "slide" : "",
+                              };
+                            }}
+                            to="/" className="flex items-center text-[#150B2BB3] justify-start">
+                            Recommendations Request
+                          </NavLink>
+                        </Typography>
+                      </li>
+
+
+
+                      <Typography
+                        as="li"
+                        variant="large"
+                        color="blue-gray"
+                        className={`p-1 text-sm`}
+                      >
+                        <NavLink
+                          style={({ isActive, isTransitioning }) => {
+                            return {
+                              fontWeight: isActive ? "bold" : "",
+                              color: isActive ? "red" : "black",
+                              viewTransitionName: isTransitioning ? "slide" : "",
+                            };
+                          }}
+                          to="/myQueryList" className="flex items-center text-[#150B2BB3]">
+                          My Queries
+                        </NavLink>
+                      </Typography>
+
+                      <Typography
+                        as="li"
+                        variant="large"
+                        color="blue-gray"
+                        className={`p-1 text-sm`}
+                      >
+                        <NavLink
+                          style={({ isActive, isTransitioning }) => {
+                            return {
+                              fontWeight: isActive ? "bold" : "",
+                              color: isActive ? "red" : "black",
+                              viewTransitionName: isTransitioning ? "slide" : "",
+                            };
+                          }}
+                          to="/" className="flex items-center text-[#150B2BB3]">
+                          My  Recommendations
+                        </NavLink>
+                      </Typography>
+
+                      <li className='mt-2'>
+                        <Button
+                          onClick={handleSignOut}
+                          className=' block text-center'
+                        >
+                          Logout
+                        </Button>
+                      </li>
+                    </ul>
+                  </div>
 
                 </>
                 :
