@@ -1,12 +1,15 @@
 import { Button } from "@material-tailwind/react";
-import  { useContext } from "react";
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import  { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import  { AuthContext } from "../../Providers/AuthProvider";
 
 const AddQuery = () => {
    const {user} = useContext(AuthContext);
-  //  console.log(user)
+   const [startDate, setStartDate] = useState(new Date(Date.now()))
+   console.log(startDate)
 
   const handleAddItem = event => {
     event.preventDefault();
@@ -14,16 +17,20 @@ const AddQuery = () => {
     const form = event.target;
     const image = form.image.value;
     const itemName = form.itemName.value;
-    const subcategoryName = form.subcategoryName.value;
+    const brandName = form.brandName.value;
+    const queryTitle = form.queryTitle.value;
     const shortDescription = form.shortDescription.value;
+    const deadline = startDate
     const userEmail = user.email;
     const userName = user.displayName;
     const photo = user?.photoURL;
     const newQueryItem = { 
       image,
       itemName, 
-      subcategoryName, 
+      brandName,
+      queryTitle,
       shortDescription, 
+      deadline,
       posterInfo: {
         userEmail,
         userName,
@@ -78,73 +85,42 @@ const AddQuery = () => {
             {/* Item Name */}
             <div className="form-control mb-8">
               <label className="label">
-                <span className="font-bold mb-3">Item Name</span>
+                <span className="font-bold mb-3">Product Name</span>
               </label>
               <input type="text" required name="itemName" placeholder="Item Name" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
             </div>
-            {/* Subcategory Name */}
+            {/* Brand Name */}
             <div className="form-control mb-8">
               <label className="label">
-                <span className="font-bold mb-3">Subcategory Name</span>
-              </label>          
-              <select name="subcategoryName" required className="select rounded-lg border-gray-200 p-3 text-sm w-full">
-                <option value="">Select</option>
-                <option value="Landscape Painting">Landscape Painting</option>
-                <option value="Portrait Drawing">Portrait Drawing</option>
-                <option value="Watercolour Painting">Watercolour Painting</option>
-                <option value="Oil Painting">Oil Painting</option>
-                <option value="Charcoal Sketching">Charcoal Sketching</option>
-                <option value="Cartoon Drawing"> Cartoon Drawing</option>
-              </select>
+                <span className="font-bold mb-3">Brand Name</span>
+              </label>
+              <input type="text" required name="brandName" placeholder="Brand Name" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div>
+            {/*Query Title */}
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Query Title</span>
+              </label>
+              <input type="text" required name="queryTitle" placeholder="title" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div>
+
+           
+            {/* Processing Time */}
+            <div className='form-control mb-8'>
+              <label className='text-gray-700'>Deadline</label>
+
+              {/* Date Picker Input Field */}
+              <DatePicker
+                className='border p-2 rounded-md'
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+              />
             </div>
           
-            {/* Price */}
-            <div className="form-control mb-8">
-              <label className="label">
-                <span className="font-bold mb-3">Price</span>
-              </label>
-              <input type="number" required name="price" placeholder="Price" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
-            </div>
-            {/* Rating */}
-            <div className="form-control mb-8">
-              <label className="label">
-                <span className="font-bold mb-3">Rating</span>
-              </label>
-              <input type="text" required name="rating" placeholder="Rating" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
-            </div>
-            {/* Customization */}
-            <div className="form-control mb-8">
-              <label className="label">
-                <span className="font-bold mb-3">Customization</span>
-              </label>
-              <select name="customization" required className="select rounded-lg border-gray-200 p-3 text-sm w-full">
-                <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-            {/* Processing Time */}
-            <div className="form-control mb-8">
-              <label className="label">
-                <span className="font-bold mb-3">Processing Time</span>
-              </label>
-              <input type="text" required name="processingTime" placeholder="Processing Time" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
-            </div>
-            {/* Stock Status */}
-            <div className="form-control mb-8">
-              <label className="label">
-                <span className="font-bold mb-3">Stock Status</span>
-              </label>
-              <select name="stockStatus" required className="select rounded-lg border-gray-200 p-3 text-sm w-full">
-                <option value="">Select</option>
-                <option value="In stock">In stock</option>
-                <option value="Made to Order">Made to Order</option>
-              </select>
-            </div>
               {/* Short Description */}
               <div className="form-control mb-8">
               <label className="label">
-                <span className="font-bold mb-3">Short Description</span>
+                <span className="font-bold mb-3">Boycott Reason</span>
               </label>
               <textarea name="shortDescription" required placeholder="Short Description" className="textarea  rounded-lg border-gray-200 p-3 text-sm w-full"></textarea>
             </div>

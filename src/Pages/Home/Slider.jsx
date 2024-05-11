@@ -28,10 +28,10 @@ const Slider = () => {
     <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl">
-          Unique Arts & Crafts Here
+          Find your best product now
             </h1>
             <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-      lets share your thoughts into modern arts & crafts
+      lets share your thoughts
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -59,10 +59,10 @@ const Slider = () => {
     <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl ">
-           Unique Arts & Crafts Here
+           Find your best product now
             </h1>
             <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-         lets share your thoughts into modern arts & crafts
+         lets share your thoughts
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -91,10 +91,10 @@ const Slider = () => {
     <div className="mx-auto  px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-black bg-clip-text text-3xl font-bold sm:text-4xl ">
-           Unique Arts & Crafts Here
+           Find your best product now
             </h1>
             <p className="mx-auto mt-4 max-w-xl sm:text-base/relaxed text-black">
-         lets share your thoughts into modern arts & crafts
+         lets share your thoughts
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
