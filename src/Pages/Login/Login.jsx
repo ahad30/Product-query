@@ -21,17 +21,15 @@ const Login = () => {
     // console.log(email, password);
     try {
       signIn(email, password)
-        .then(async result => {
+        .then( result => {
           console.log(result.user);
 
           //2. get token from server using email
-          const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
-            {
-              email: result?.user?.email,
-            },
-            { withCredentials: true }
-          )
-          console.log(data)
+           axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+            {email: result?.user?.email},{ withCredentials: true })
+            .then(res => {
+            console.log(res?.data)
+          })    
           toast.success('log in successfully')
           navigate(location?.state ? location.state : '/');
 

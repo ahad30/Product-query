@@ -79,7 +79,7 @@ export const routes = createBrowserRouter([
          <UpdateItem/>
        </PrivateRoute>,
         loader: ({ params }) =>
-         fetch(`https://b9a10-server-side-ahad30.vercel.app/artCraft/${params.id}`)
+         fetch(`${import.meta.env.VITE_API_URL}/queryDetails/${params.id}`)
       },
 
      

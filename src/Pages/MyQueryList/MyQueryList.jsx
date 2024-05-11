@@ -9,7 +9,6 @@ import moment from 'moment';
 const MyQueryList = () => {
   const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
-  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}`)
@@ -35,7 +34,7 @@ const MyQueryList = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${import.meta.env.VITE_API_URL}/deleteQuery/${_id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/deleteQueryItem/${_id}`, {
           method: 'DELETE'
         })
           .then((res) => res.json())
@@ -89,7 +88,14 @@ const MyQueryList = () => {
                 </div>
                 <div className='bg-white space-y-3 p-4 sm:p-6'>
 
-                  <h1 className='font-bold text-lg'>{item?.itemName}</h1>
+                 <div className='flex justify-between items-center'>
+                 <h1 className='font-bold text-lg'>{item?.itemName}</h1>
+                 <div>
+                 <Link to= {`/artCraftDetails/${item?._id}`}>
+                    <button className='text-sm bg-[#23BE0A] p-2 text-white rounded-md'>View Details</button>
+                 </Link>
+                 </div>
+                 </div>
                   <p>{moment(item?.deadline).format('MMMM Do YYYY, h:mm:ss a')}</p>
                   <h1 className='font-bold text-base'>{item?.queryTitle}</h1>
                   {/* <div className=''>

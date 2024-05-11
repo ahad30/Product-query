@@ -111,7 +111,7 @@ const AddQuery = () => {
 
             {/* Processing Time */}
             <div className='form-control mb-8'>
-              <label className='label font-bold mb-3'>Deadline</label>
+              <label className='label font-bold mb-3'>Date</label>
 
               {/* Date Picker Input Field */}
               <DatePicker
