@@ -4,6 +4,7 @@ import { CiStar } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 const MyQueryList = () => {
   const { user } = useContext(AuthContext);
@@ -72,7 +73,7 @@ const MyQueryList = () => {
     }; */}
 
 
-      {/* { items.length === 0 ? (
+      { items.length === 0 ? (
         <p className='text-center text-red-400 font-bold'>No data found.</p>
       ) : (
         <div className='w-[98%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
@@ -87,24 +88,22 @@ const MyQueryList = () => {
                   />
                 </div>
                 <div className='bg-white space-y-3 p-4 sm:p-6'>
-                  <h1 className='font-bold'>{item?.itemName}</h1>
-                  <div className='flex items-center justify-between'>
-                    <p>
-                      $ <span className='text-[#23BE0A] font-bold'>{item?.price}</span>
-                      {' '}
-                    </p>
-                    <div className='flex items-center space-x-1'>
-                      <CiStar />
-                      <p className='text-sm p-1 text-black  me-2'>{item?.rating}</p>
-                    </div>
-                  </div>
+
+                  <h1 className='font-bold text-lg'>{item?.itemName}</h1>
+                  <p>{moment(item?.deadline).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                  <h1 className='font-bold text-base'>{item?.queryTitle}</h1>
+                  {/* <div className=''>
+                  
+                    <p className=' font-medium'>
+                    {item?.shortDescription}
+                    </p>                  
+                    
+                 
+                  </div> */}
                   <div className='flex items-center justify-between gap-4 text-[#878787] mb-3'>
                     <div>
-                      <p className='text-sm'>#{item?.customization}</p>
-                    </div>
-                    <div>
-                      <p className='text-sm'>#{item?.stockStatus}</p>
-                    </div>
+                      <p className='text-sm text-[#23BE0A]'>#{item?.brandName}</p>
+                    </div>        
                     <div className='flex items-center gap-x-3'>
                       <Link to={`/updateItem/${item?._id}`}>
                         <button>
@@ -123,7 +122,7 @@ const MyQueryList = () => {
             </div>
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 };
