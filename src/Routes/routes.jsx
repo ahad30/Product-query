@@ -8,11 +8,12 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import AllArtCraftItem from "../Pages/AllArtCraftItem/AllArtCraftItem";
-import AddArtCarftItem from "../Pages/AddArtCarftItem/AddArtCarftItem";
+// import AddArtCarftItem from "../Pages/AddArtCarftItem/AddArtCarftItem";
 import MyListItems from "../Pages/MyListItems/MyListItems";
 import ArtCraftDetails from "../Pages/Home/ArtCraftDetails/ArtCraftDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
 import ArtCraftCategoryDetails from "../Pages/Home/ArtCraftCategoryDetails/ArtCraftCategoryDetails";
+import AddQuery from "../Pages/AddQuery/AddQuery";
 
 export const routes = createBrowserRouter([
   {
@@ -60,7 +61,7 @@ export const routes = createBrowserRouter([
         path: "/addItem",
         element: 
        <PrivateRoute>
-         <AddArtCarftItem/>
+         <AddQuery/>
        </PrivateRoute>
       },
       {

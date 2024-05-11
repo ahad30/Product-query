@@ -4,11 +4,11 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import  { AuthContext } from "../../Providers/AuthProvider";
 
-const AddCraftItem = () => {
+const AddQuery = () => {
    const {user} = useContext(AuthContext);
   //  console.log(user)
 
-  const handleAddCraftItem = event => {
+  const handleAddItem = event => {
     event.preventDefault();
 
     const form = event.target;
@@ -16,24 +16,30 @@ const AddCraftItem = () => {
     const itemName = form.itemName.value;
     const subcategoryName = form.subcategoryName.value;
     const shortDescription = form.shortDescription.value;
-    const price = parseFloat(form.price.value);
-    const rating = parseFloat(form.rating.value); 
-    const customization = form.customization.value;
-    const processingTime = parseFloat(form.processingTime.value);
-    const stockStatus = form.stockStatus.value;
     const userEmail = user.email;
     const userName = user.displayName;
-
-    const newCraftItem = { image, itemName, subcategoryName, shortDescription, price, rating, customization, processingTime, stockStatus, userEmail, userName };
-  //  console.log(newCraftItem);
+    const photo = user?.photoURL;
+    const newQueryItem = { 
+      image,
+      itemName, 
+      subcategoryName, 
+      shortDescription, 
+      posterInfo: {
+        userEmail,
+        userName,
+        photo
+      },
+      recommendation_count: 0,
+    };
+  //  console.log(newQueryItem);
 
     // send data to the server
-    fetch('https://b9a10-server-side-ahad30.vercel.app/addArtCraftItem', {
+    fetch(`${import.meta.env.VITE_API_URL}/addSingleQuery`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(newCraftItem)
+      body: JSON.stringify(newQueryItem)
     })
       .then(res => res.json())
       .then(data => {
@@ -53,12 +59,12 @@ const AddCraftItem = () => {
   return (
     <section className="">
       <Helmet>
-        <title>Art & Craft | Add Item</title>
+        <title>Akeneo | Add Item</title>
       </Helmet>
       <h2 className="text-2xl font-extrabold text-center mb-5">Add a Craft Item</h2>
       <div className="bg-[#F4F3F0] p-10 rounded-lg shadow-lg mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
 
-          <form onSubmit={handleAddCraftItem} className="">
+          <form onSubmit={handleAddItem} className="">
            <div className="grid grid-cols-1 gap-x-5 lg:grid-cols-2">
             {/* Form fields */}
             {/* Image URL */}
@@ -146,7 +152,7 @@ const AddCraftItem = () => {
             </div>
             {/* Submit Button */}
 <div className="flex justify-end">
-<Button type="submit" value="Add Craft Item" className="" >Add Craft Item</Button>
+<Button type="submit" value="Add Craft Item" className="" >Add Query</Button>
 </div>
           </form>
   
@@ -155,4 +161,4 @@ const AddCraftItem = () => {
   );
 };
 
-export default AddCraftItem;
+export default AddQuery;
