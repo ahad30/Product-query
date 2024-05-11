@@ -35,7 +35,7 @@ const MyQueryList = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://b9a10-server-side-ahad30.vercel.app/deleteItem/${_id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/deleteQuery/${_id}`, {
           method: 'DELETE'
         })
           .then((res) => res.json())
