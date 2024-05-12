@@ -22,7 +22,7 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage/>,
         loader: () =>
          fetch(`${import.meta.env.VITE_API_URL}/getSingleQuery`)
       },
@@ -63,6 +63,7 @@ export const routes = createBrowserRouter([
          <AddQuery/>
        </PrivateRoute>
       },
+      
       {
         path: "/myQueryList",
         element: 

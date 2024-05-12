@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import Contact from "../Contact/Contact";
-import ArtCraft from "./ArtCraft/ArtCraft";
 import { useLoaderData } from "react-router-dom";
 import Blog from "./Blog/Blog";
-import ArtCraftCategory from "./ArtCraftCategory/ArtCraftCategory";
+// import ArtCraftCategory from "./ArtCraftCategory/ArtCraftCategory";
 import Slider from "./Slider";
 import { Banner } from "./Banner";
+import RecentQueries from "./RecentQueries/RecentQueries";
 
 const HomePage = () => {
 
@@ -19,10 +19,8 @@ const HomePage = () => {
     </Helmet>
      <Slider></Slider>
      <Banner></Banner>
-     <ArtCraft
-     loadedItems = {loadedItems}
-     ></ArtCraft> 
-     <ArtCraftCategory></ArtCraftCategory>
+     <RecentQueries loadedItems = {loadedItems}></RecentQueries>
+     {/* <ArtCraftCategory></ArtCraftCategory> */}
      <Blog></Blog>
      <Contact></Contact>
     </div>
