@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import SingleArtCraft from './SingleArtCraft';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
+import SingleQuery from './SingleQuery';
 
 const RecentQueries = ({ loadedItems }) => {
     const [recentQueries, setRecentQueries] = useState(loadedItems);
@@ -33,11 +33,11 @@ const RecentQueries = ({ loadedItems }) => {
                 >
                     {showAll ? (
                         recentQueries?.map((recentQueriesItem) => (
-                            <SingleArtCraft key={recentQueriesItem?._id} recentQueriesItem={recentQueriesItem} setRecentQueries={setRecentQueries}></SingleArtCraft>
+                            <SingleQuery key={recentQueriesItem?._id} recentQueriesItem={recentQueriesItem} setRecentQueries={setRecentQueries}></SingleQuery>
                         ))
                     ) : (
                         firstSixQueries?.map((recentQueriesItem) => (
-                            <SingleArtCraft key={recentQueriesItem?._id} recentQueriesItem={recentQueriesItem} setRecentQueries={setRecentQueries}></SingleArtCraft>
+                            <SingleQuery key={recentQueriesItem?._id} recentQueriesItem={recentQueriesItem} setRecentQueries={setRecentQueries}></SingleQuery>
                         ))
                     )}
                 </div>

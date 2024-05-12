@@ -10,6 +10,7 @@ const MyQueryList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    
     fetch(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
