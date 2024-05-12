@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { CiStar } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
@@ -54,22 +53,28 @@ const MyQueryList = () => {
 
   return (
     <div className='mb-5'>
-      <h1 className='text-center text-3xl font-bold mt-5 mb-5'>My Query Items</h1>
+    
 
-      {/* const newQueryItem = {
-      image,
-      itemName,
-      brandName,
-      queryTitle,
-      shortDescription,
-      deadline,
-      posterInfo: {
-        userEmail,
-        userName,
-        photo
-      },
-      recommendation_count: 0,
-    }; */}
+      <section className="bg-gray-300 dark:bg-gray-900 w-[93%] mx-auto">
+    <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+        <h2 className="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            Find your  <span className="text-blue-500">next product now.</span>
+        </h2>
+
+        <p className="max-w-4xl mt-6 text-center text-gray-500 dark:text-gray-300">
+           
+        </p>
+
+        <div className="inline-flex w-full mt-6 sm:w-auto">
+          <Link to={`/addQuery`}>
+          <button className="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Add Query Now
+            </button>
+          </Link>
+        </div>
+    </div>
+      </section>
+<h1 className='text-center text-3xl font-bold mt-5 mb-5'>My Query Items</h1>
 
 
       { items.length === 0 ? (

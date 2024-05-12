@@ -118,15 +118,16 @@ const handleUpdateItem = event => {
 
 
     {/* Date Time */}
-    {/* <div className='form-control mb-8'>
+    <div className='form-control mb-8'>
       <label className='label font-bold mb-3'>Date</label>
       <DatePicker
-        className='border p-2 rounded-md w-full'
+        readOnly
+        className='border p-2 rounded-md  w-full'
         selected={startDate}
         
         onChange={date => setStartDate(date)}
       />
-    </div> */}
+    </div>
 
     {/* Short Description */}
     <div className="form-control mb-8">

@@ -8,7 +8,6 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import AllArtCraftItem from "../Pages/AllArtCraftItem/AllArtCraftItem";
-// import AddArtCarftItem from "../Pages/AddArtCarftItem/AddArtCarftItem";
 import ArtCraftDetails from "../Pages/Home/ArtCraftDetails/ArtCraftDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
 import ArtCraftCategoryDetails from "../Pages/Home/ArtCraftCategoryDetails/ArtCraftCategoryDetails";
@@ -25,14 +24,14 @@ export const routes = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: () =>
-         fetch('https://b9a10-server-side-ahad30.vercel.app/artCraft')
+         fetch(`${import.meta.env.VITE_API_URL}/getSingleQuery`)
       },
 
       {
         path: "/allArt&Craft",
         element:  <AllArtCraftItem/>,
         loader: () => 
-        fetch('https://b9a10-server-side-ahad30.vercel.app/artCraft')
+        fetch(`${import.meta.env.VITE_API_URL}/artCraft`)
       },
 
       {
@@ -42,8 +41,9 @@ export const routes = createBrowserRouter([
         <ArtCraftDetails/>
        </PrivateRoute>,
         loader: ({ params }) =>
-         fetch(`https://b9a10-server-side-ahad30.vercel.app/artCraft/${params.id}`)
+         fetch(`${import.meta.env.VITE_API_URL}/artCraft/${params.id}`)
       },
+
       {
 
         path: "/artCraftSubcategoryDetails/:id",
@@ -52,9 +52,8 @@ export const routes = createBrowserRouter([
         <ArtCraftCategoryDetails/>
        </PrivateRoute>,
         loader: ({ params }) =>
-         fetch(`https://b9a10-server-side-ahad30.vercel.app/artCraftSubcategory/${params.id}`)
+         fetch(`${import.meta.env.VITE_API_URL}/artCraftSubcategory/${params.id}`)
       },
-
 
 
       {
