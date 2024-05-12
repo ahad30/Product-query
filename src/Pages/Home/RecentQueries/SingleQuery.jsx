@@ -48,7 +48,7 @@ const { image,brandName, itemName, queryTitle ,shortDescription, posterInfo,dead
 }
 
 
-SingleArtCraft.propTypes = {
+SingleQuery.propTypes = {
   recentQueriesItem: PropTypes.object.isRequired
 }
 

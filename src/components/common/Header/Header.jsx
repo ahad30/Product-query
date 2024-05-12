@@ -89,7 +89,7 @@ const Header = () => {
               viewTransitionName: isTransitioning ? "slide" : "",
             };
           }}
-          to="/allArt&Craft" className="flex items-center text-[#150B2BB3]">
+          to="/allQueries" className="flex items-center text-[#150B2BB3]">
           Queries
         </NavLink>
       </Typography>

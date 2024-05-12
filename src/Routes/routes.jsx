@@ -7,12 +7,12 @@ import Contact from "../Pages/Contact/Contact";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
-import AllArtCraftItem from "../Pages/AllArtCraftItem/AllArtCraftItem";
 import ArtCraftDetails from "../Pages/Home/ArtCraftDetails/ArtCraftDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
 import ArtCraftCategoryDetails from "../Pages/Home/ArtCraftCategoryDetails/ArtCraftCategoryDetails";
 import AddQuery from "../Pages/AddQuery/AddQuery";
 import MyQueryList from "../Pages/MyQueryList/MyQueryList";
+import AllQueries from "../Pages/AllQueries/AllQueries";
 
 export const routes = createBrowserRouter([
   {
@@ -28,10 +28,10 @@ export const routes = createBrowserRouter([
       },
 
       {
-        path: "/allArt&Craft",
-        element:  <AllArtCraftItem/>,
+        path: "/allQueries",
+        element:  <AllQueries/>,
         loader: () => 
-        fetch(`${import.meta.env.VITE_API_URL}/artCraft`)
+        fetch(`${import.meta.env.VITE_API_URL}/getSingleQuery`)
       },
 
       {
