@@ -58,7 +58,7 @@ const handleLayoutChange = (newLayout) => {
                <div>
                 <p className='font-bold'>Comment: {item?.recommendation_count}</p>
                </div>
-               <Link to= {`/artCraftDetails/${item?._id}`}>
+               <Link to= {`/queryDetails/${item?._id}`}>
                     <button className='text-sm bg-[#23BE0A] p-2 text-white rounded-md'> Recommend</button>
                 </Link>
                </div>

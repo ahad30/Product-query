@@ -1,4 +1,4 @@
-Website Name : Unique Arts & Crafts
+Website Name : Akeneo Product Query
 
 live link : https://assignment-10-ahad.netlify.app/
 
@@ -7,20 +7,21 @@ Packages:
 1. React-Tooltip : https://react-tooltip.com/
 2. Slider : https://swiperjs.com/
 3. Typewriter : https://www.npmjs.com/package/react-simple-typewriter
+4. Meraki Ui : https://merakiui.com/
 
 Features:
 
+1. Comprehensive Search: The website should offer a robust search functionality allowing users to easily find products by name, category, brand, or any relevant keywords.
 
-1. Diverse Tutorials: Offer a wide range of tutorials covering various art styles, techniques, and mediums such as pencil drawing, watercolor painting, digital art, and more.
+2. Detailed Product Information: Each product listing should include detailed information such as specifications, features, pricing, availability, and user reviews to help users make informed decisions.
 
-2. Interactive Learning: Provide interactive lessons with step-by-step instructions, video demonstrations, and interactive exercises to engage learners of all skill levels.
+3. Comparison Tools: Providing tools for users to compare multiple products side by side can enhance the shopping experience and facilitate decision-making based on key differences.
 
-3. Community Engagement: Foster a supportive online community where members can share their artwork, receive feedback, and participate in challenges and contests to encourage growth and creativity.
+4. User Feedback and Reviews: Incorporating user-generated content such as reviews, ratings, and comments can add credibility and transparency to the platform, helping users gauge the quality and reliability of products.
 
-4. Resources and Materials: Curate lists of recommended art supplies, tools, and resources, along with tips on how to use them effectively to enhance the drawing experience.
+5. Customer Support: Offering accessible customer support channels such as live chat, email, or FAQs can assist users with any queries or concerns they may have during their shopping journey, fostering trust and satisfaction.
 
-5. Portfolio Showcase: Allow users to create personal portfolios to showcase their artwork, with options for customization and sharing on social media platforms to gain exposure and connect with fellow artists.
+Sure, here's one more point:
 
-6. Events and Workshops: Organize live events, workshops, and webinars featuring guest artists and industry professionals to provide inspiration, insights, and opportunities for networking and skill development.
-
+6. Personalization Features: Implementing personalized recommendations based on user preferences, browsing history, and past purchases can enhance the user experience and increase the likelihood of finding relevant products tailored to individual needs and interests.
 

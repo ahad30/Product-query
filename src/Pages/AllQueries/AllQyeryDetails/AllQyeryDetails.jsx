@@ -3,11 +3,11 @@ import { useLoaderData } from 'react-router-dom';
 import { CiStar } from 'react-icons/ci';
 import { useEffect, useState } from 'react';
 
-const ArtCraftDetails = () => {
+const AllQyeryDetails = () => {
   
-  const artCraft = useLoaderData();
+  const allQuery = useLoaderData();
 
-const { image, itemName, subcategoryName, shortDescription, price, rating, customization, processingTime, stockStatus} = artCraft
+const { image, itemName, subcategoryName, shortDescription, price, rating, customization, processingTime, stockStatus} = allQuery
 
   return (
     <div className='max-w-4xl mx-auto'>
@@ -42,4 +42,4 @@ const { image, itemName, subcategoryName, shortDescription, price, rating, custo
   )
 }
 
-export default ArtCraftDetails
+export default AllQyeryDetails
