@@ -26,6 +26,7 @@ const AddQuery = () => {
     const userEmail = user.email;
     const userName = user.displayName;
     const photo = user?.photoURL;
+    
     const newQueryItem = {
       image,
       itemName,

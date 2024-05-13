@@ -1,44 +1,198 @@
-
 import { useLoaderData } from 'react-router-dom';
-import { CiStar } from 'react-icons/ci';
-import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment';
+import { Button } from '@material-tailwind/react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import toast from 'react-hot-toast';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import AllRecommend from '../../AllRecommend/AllRecommend';
+
 
 const AllQyeryDetails = () => {
-  
-  const allQuery = useLoaderData();
 
-const { image, itemName, subcategoryName, shortDescription, price, rating, customization, processingTime, stockStatus} = allQuery
+  const allQuery = useLoaderData();
+  const [startDate, setStartDate] = useState(new Date(Date.now()))
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
+
+  const { _id, image, deadline, itemName, brandName, shortDescription, queryTitle, posterInfo } = allQuery
+
+
+  const handleAddRecommendation = async (event) => {
+    event.preventDefault();
+
+    if(user?.email === posterInfo?.userEmail){
+      return toast.error('Access Denied')
+    }
+
+    const form = event.target;
+    const queryId = _id
+    const currentQueryTitle = queryTitle
+    const currentProductName = itemName
+    const recommendImage = form.recommendImage.value;
+    const recommendProductName = form.recommendProductName.value;
+    const title = form.title.value;
+    const recommendReason = form.recommendReason.value;
+    const deadline = startDate;
+    const userEmail = user.email;
+    const userName = user.displayName;
+
+    const recommendationData = 
+    {  queryId,
+       currentQueryTitle ,
+       currentProductName,
+       recommendImage,
+       recommendProductName,
+       title,
+       recommendReason,
+       deadline,
+       userEmail,
+       userName,
+       posterInfo
+      }
+  
+
+    try {
+      const { data } = await axiosSecure.post(`/addRecommend`, recommendationData)
+      console.log(data)
+      console.log(recommendationData)
+      toast.success('Comment added Successfully!')
+      form.reset();
+   
+    } catch (err) {
+      toast.error(err.response.data)
+      e.target.reset()
+    }
+  }
+
 
   return (
-    <div className='max-w-4xl mx-auto'>
-      <div className='flex flex-col lg:flex-row  lg:justify-between bg-gray-50 rounded-md p-10'>
-        <div className='space-y-6 lg:space-y-3 lg:w-[70%]'>
-          
-          <p className='font-bold'>{itemName}</p>
-          <p>{shortDescription}</p>
+    <section className='max-w-[1250px] mx-auto'>
+<div className='flex flex-col  lg:flex-row gap-4'>
 
-          <div className='flex items-center'>
-          <CiStar/>
-      <p className='text-sm  p-1 text-black  me-2'>{rating}</p>
-          </div>
-          <div className='mb-2 flex flex-col lg:flex-row'>
-            <ul className=' '>
-              <li><span className='font-bold'>Customization:</span> {customization}</li>
-            </ul>
-          </div>
+
+      {/* Poster Details */}
+
+      <div className="w-full lg:w-[50%]  px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <img className="object-cover w-full h-[350px] mb-4" src={image} alt="Product" />
+        <div className="flex items-center justify-between">
+
+          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
+            {moment(deadline).format('MMMM Do YYYY, h:mm:ss a')}
+          </span>
+          <a className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500" tabindex="0" role="button">{brandName}</a>
         </div>
 
-        <div className='space-y-6 lg:space-y-3'>
-          <p>$ <span className='text-[#23BE0A] font-bold'>{price}</span> </p>
-          <p className=' text-black  me-2'><span className='font-bold'>Stock Status:</span> {stockStatus}</p>
-          <p><span className='font-bold'>Time: </span>{processingTime} days  </p>
-          <p>#{subcategoryName}</p>
+        <div className="mt-2">
+          <a href="#" className="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline">{queryTitle}</a>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">
+            {shortDescription}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between mt-4">
+          <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline" tabindex="0" role="link">{itemName}</a>
+
+          <div className="flex items-center gap-2">
+            <img src={posterInfo?.photo} alt="avatar" className='object-cover h-10 rounded-full' />
+            <div>
+              <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" role="link">{posterInfo?.userName}</a>
+              <p className='text-sm'>{posterInfo?.userEmail}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <img src={image} alt="" className='lg:w-full w-[90%] mx-auto'/>
+
+
+      {/* Recommendation Form */}
+
+      <div className='w-full lg:w-[50%]'>
+        <form onSubmit={handleAddRecommendation} className="">
+          <div className="grid grid-cols-1 gap-x-5 lg:grid-cols-2">
+            {/* Form fields */}
+
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Email</span>
+              </label>
+              <input
+                id='emailAddress'
+                type='email'
+                name='email'
+                disabled
+                defaultValue={user?.email}
+                className='input rounded-lg border-gray-200 p-3 text-sm w-full'
+              />
+            </div>
+
+
+
+            {/* Image URL */}
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Recommend Image URL</span>
+              </label>
+              <input type="text" required name="recommendImage" placeholder="Image URL" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div>
+
+            {/* Item Name */}
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Recommend Product Name</span>
+              </label>
+              <input type="text" required name="recommendProductName" placeholder="Product Name" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div>
+            {/* Brand Name */}
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Title</span>
+              </label>
+              <input type="text" required name="title" placeholder="Title" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div>
+
+            {/*Query Title */}
+            {/* <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Query Title</span>
+              </label>
+              <input type="text" required name="queryTitle" placeholder="title" className="input rounded-lg border-gray-200 p-3 text-sm w-full" />
+            </div> */}
+
+            {/* Date */}
+            <div className='form-control mb-8'>
+              <label className='label font-bold mb-3'>Date</label>
+
+              <DatePicker
+                className='border p-2 rounded-md w-full'
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+              />
+            </div>
+
+            {/* Short Description */}
+            <div className="form-control mb-8">
+              <label className="label">
+                <span className="font-bold mb-3">Recommendation Reason</span>
+              </label>
+              <textarea name="recommendReason" required placeholder="Description" className="textarea  rounded-lg border-gray-200 p-3 text-sm w-full"></textarea>
+            </div>
+
+          </div>
+          {/* Submit Button */}
+          <div className="flex justify-end">
+            <Button type="submit" value="Add Craft Item" className="" >Add Recommend</Button>
+          </div>
+        </form>
       </div>
-    </div>
+
+</div>
+
+<div>
+  <AllRecommend></AllRecommend>
+</div>
+    </section>
   )
 }
 

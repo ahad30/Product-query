@@ -21,7 +21,5 @@ Features:
 
 5. Customer Support: Offering accessible customer support channels such as live chat, email, or FAQs can assist users with any queries or concerns they may have during their shopping journey, fostering trust and satisfaction.
 
-Sure, here's one more point:
-
 6. Personalization Features: Implementing personalized recommendations based on user preferences, browsing history, and past purchases can enhance the user experience and increase the likelihood of finding relevant products tailored to individual needs and interests.
 

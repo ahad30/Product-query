@@ -133,8 +133,6 @@ const Header = () => {
 
                 <img src={logo} className="w-[130px] h-[27px] rounded-full" />
 
-
-
               </NavLink>
             </Typography>
           </div>
@@ -200,7 +198,7 @@ const Header = () => {
                                 viewTransitionName: isTransitioning ? "slide" : "",
                               };
                             }}
-                            to="/" className="flex items-center text-[#150B2BB3] justify-start">
+                            to="/recommendationRequest" className="flex items-center text-[#150B2BB3] justify-start">
                             Recommendations Request
                           </NavLink>
                         </Typography>
@@ -241,8 +239,8 @@ const Header = () => {
                               viewTransitionName: isTransitioning ? "slide" : "",
                             };
                           }}
-                          to="/" className="flex items-center text-[#150B2BB3]">
-                          My  Recommendations
+                          to="/myRecommendation" className="flex items-center text-[#150B2BB3]">
+                          My Recommendations
                         </NavLink>
                       </Typography>
 

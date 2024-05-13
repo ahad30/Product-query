@@ -13,6 +13,8 @@ import AddQuery from "../Pages/AddQuery/AddQuery";
 import MyQueryList from "../Pages/MyQueryList/MyQueryList";
 import AllQueries from "../Pages/AllQueries/AllQueries";
 import AllQyeryDetails from "../Pages/AllQueries/AllQyeryDetails/AllQyeryDetails";
+import MyRecommendation from "../Pages/MyRecommendation/MyRecommendation";
+import RecommendationRequest from "../Pages/RecommendationRequest/RecommendationRequest";
 
 export const routes = createBrowserRouter([
   {
@@ -45,14 +47,19 @@ export const routes = createBrowserRouter([
       },
 
       {
-
-        path: "/artCraftSubcategoryDetails/:id",
+        path: "/myRecommendation",
         element: 
        <PrivateRoute>
-        <ArtCraftCategoryDetails/>
+        <MyRecommendation></MyRecommendation>
        </PrivateRoute>,
-        loader: ({ params }) =>
-         fetch(`${import.meta.env.VITE_API_URL}/artCraftSubcategory/${params.id}`)
+
+      },
+      {
+        path: "/recommendationRequest",
+        element: 
+       <PrivateRoute>
+        <RecommendationRequest></RecommendationRequest>
+       </PrivateRoute>
       },
 
 

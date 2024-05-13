@@ -97,7 +97,7 @@ const MyQueryList = () => {
                  <div className='flex justify-between items-center'>
                  <h1 className='font-bold text-lg'>{item?.itemName}</h1>
                  <div>
-                 <Link to= {`/artCraftDetails/${item?._id}`}>
+                 <Link to= {`/queryDetails/${item?._id}`}>
                     <button className='text-sm bg-[#23BE0A] p-2 text-white rounded-md'>View Details</button>
                  </Link>
                  </div>
