@@ -11,7 +11,7 @@ const UpdateItem = () => {
   const loadedItems = useLoaderData();
   const navigate = useNavigate()
    const { _id , image,itemName,brandName,queryTitle, shortDescription,deadline} = loadedItems;
-    const [startDate, setStartDate] = useState(new Date(Date.now(deadline)));
+    const [startDate, setStartDate] = useState(new Date(deadline));
     
    console.log(loadedItems)
 
@@ -121,7 +121,7 @@ const handleUpdateItem = event => {
     <div className='form-control mb-8'>
       <label className='label font-bold mb-3'>Date</label>
       <DatePicker
-        readOnly
+        
         className='border p-2 rounded-md  w-full'
         selected={startDate}
         

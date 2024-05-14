@@ -23,9 +23,9 @@ const AllQyeryDetails = () => {
   const handleAddRecommendation = async (event) => {
     event.preventDefault();
 
-    if(user?.email === posterInfo?.userEmail){
-      return toast.error('Access Denied')
-    }
+    // if(user?.email === posterInfo?.userEmail){
+    //   return toast.error('Access Denied')
+    // }
 
     const form = event.target;
     const queryId = _id
@@ -55,7 +55,7 @@ const AllQyeryDetails = () => {
   
 
     try {
-      const { data } = await axiosSecure.post(`/addRecommend`, recommendationData)
+      const { data } = await axiosSecure.put(`/addComment/${_id}`, recommendationData)
       console.log(data)
       console.log(recommendationData)
       toast.success('Comment added Successfully!')
@@ -63,7 +63,7 @@ const AllQyeryDetails = () => {
    
     } catch (err) {
       toast.error(err.response.data)
-      e.target.reset()
+      // e.target.reset()
     }
   }
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import axios from 'axios';
 
 const MyQueryList = () => {
   const { user } = useContext(AuthContext);
@@ -11,10 +12,11 @@ const MyQueryList = () => {
 
   useEffect(() => {
     
-    fetch(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}`)
-      .then((res) => res.json())
+    axios.get(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}` , {
+      withCredentials: true,
+    })
       .then((data) => {
-        setItems(data);
+        setItems(data?.data);
         console.log(data);
       })
       .catch((error) => {
