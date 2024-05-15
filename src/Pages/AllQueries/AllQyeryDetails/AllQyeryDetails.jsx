@@ -19,6 +19,7 @@ const AllQyeryDetails = () => {
 
   const { _id, image, deadline, itemName, brandName, shortDescription, queryTitle, posterInfo } = allQuery
 
+  console.log(allQuery)
 
   const handleAddRecommendation = async (event) => {
     event.preventDefault();
