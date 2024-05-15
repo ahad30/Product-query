@@ -17,7 +17,8 @@ const AllQyeryDetails = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure()
 
-  const { _id, image, deadline, itemName, brandName, shortDescription, queryTitle, posterInfo } = allQuery
+  const { _id, image, deadline, itemName, brandName, shortDescription, queryTitle, posterInfo, recommended
+  } = allQuery
 
   console.log(allQuery)
 
@@ -191,7 +192,7 @@ const AllQyeryDetails = () => {
 </div>
 
 <div>
-  <AllRecommend ></AllRecommend>
+  <AllRecommend recommended={recommended}></AllRecommend>
 </div>
     </section>
   )

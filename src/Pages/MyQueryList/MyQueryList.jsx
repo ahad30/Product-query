@@ -22,7 +22,7 @@ const MyQueryList = () => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [user?.email]);
 
   const handleDelete = (_id) => {
     console.log(_id);
