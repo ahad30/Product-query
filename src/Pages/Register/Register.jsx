@@ -63,7 +63,7 @@ const Register = () => {
        
         <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <Helmet>
-            <title>Luxury | Register</title>
+            <title>Akeneo | Register</title>
         </Helmet>
         <div className="mx-auto max-w-lg text-center">
             <h1 className="text-2xl font-bold sm:text-3xl">Register Now!</h1>

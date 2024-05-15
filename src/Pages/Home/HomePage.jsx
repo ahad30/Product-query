@@ -20,7 +20,6 @@ const HomePage = () => {
      <Slider></Slider>
      <Banner></Banner>
      <RecentQueries loadedItems = {loadedItems}></RecentQueries>
-     {/* <ArtCraftCategory></ArtCraftCategory> */}
      <Blog></Blog>
      <Contact></Contact>
     </div>

@@ -199,7 +199,7 @@ const Header = () => {
                               };
                             }}
                             to="/recommendationRequest" className="flex items-center text-[#150B2BB3] justify-start">
-                            Recommendations Request
+                            Recommendations For Me
                           </NavLink>
                         </Typography>
                       </li>

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-
 import { Link } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
+import SingleComment from './SingleComment';
 
 
 
@@ -16,10 +16,8 @@ const MyRecommendation = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    
-    axios.get(`${import.meta.env.VITE_API_URL}/mySingleQuery/${user?.email}` , {
-      withCredentials: true,
-    })
+
+    axios.get(`${import.meta.env.VITE_API_URL}/myRecommend/${user?.email}`)
       .then((data) => {
         setItems(data?.data);
         console.log(data?.data);
@@ -27,7 +25,8 @@ const MyRecommendation = () => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [user?.email]);
+
 
   // const handleDelete = (_id) => {
   //   console.log(_id);
@@ -57,127 +56,138 @@ const MyRecommendation = () => {
   //   });
   // };
 
+  const handleDelete = (queryId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`${import.meta.env.VITE_API_URL}/deleteRecommend/${queryId}`)
+          .then((response) => {
+            if (response.status === 200) {
+              Swal.fire(
+                'Deleted!',
+                'Your recommendation has been deleted.',
+                'success'
+              );
+              // Update the state to remove the deleted recommendation
+              setItems(prevItems => prevItems.map(item => {
+                const updatedItem = { ...item };
+                updatedItem.recommended = updatedItem.recommended.filter(recommendation => recommendation.queryId !== queryId);
+                return updatedItem;
+              }));
+            } else {
+              Swal.fire(
+                'Error!',
+                'Failed to delete the recommendation.',
+                'error'
+              );
+            }
+          })
+          .catch((error) => {
+            console.error('Error deleting recommendation:', error);
+            Swal.fire(
+              'Error!',
+              'Failed to delete the recommendation.',
+              'error'
+            );
+          });
+      }
+    });
+  };
+  
+
 
 
 
   return (
-    <section className='max-w-6xl px-4 mx-auto pt-12'>
-    <div className='flex items-center gap-x-3'>
-      <h2 className='text-lg font-medium text-gray-800 '>My Recommendation</h2>
+    <section className='container px-4 mx-auto pt-12'>
+      <div className='flex items-center gap-x-3'>
+        <h2 className='text-lg font-medium text-gray-800'>My Recommendations</h2>
 
-      <span className='px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full '>
-        {/* {bids.length} Bid */}
-      </span>
-    </div>
+      </div>
 
-    <div className='flex flex-col mt-6'>
-      <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-          <div className='overflow-hidden border border-gray-200  md:rounded-lg'>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
-                <tr>
-                  <th
-                    scope='col'
-                    className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'
-                  >
-                    <div className='flex items-center gap-x-3'>
-                      <span>Date</span>
-                    </div>
-                  </th>
-
-                  <th
-                    scope='col'
-                    className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                  >
-                    <span>Product Name</span>
-                  </th>
-
-                  <th
-                    scope='col'
-                    className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                  >
-                    <button className='flex items-center gap-x-2'>
-                      <span>Email</span>
-                    </button>
-                  </th>
-
-                  <th
-                    scope='col'
-                    className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                  >
-                    Title
-                  </th>
-
-                  <th
-                    scope='col'
-                    className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                  >
-             Reason
-                  </th>
-
-                </tr>
-              </thead>
-              <tbody className='bg-white divide-y divide-gray-200'>
+      <div className='flex flex-col mt-6'>
+        <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+          <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
+            <div className='overflow-hidden border border-gray-200 md:rounded-lg'>
+              <table className='min-w-full divide-y divide-gray-200'>
+                <thead className='bg-gray-50'>
+                  <tr>
+                    <th scope='col' className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      <div className='flex items-center gap-x-3'>
+                        <span>Date</span>
+                      </div>
+                    </th>
+                    <th scope='col' className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      <span>Product Name</span>
+                    </th>
+                    <th scope='col' className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      <button className='flex items-center gap-x-2'>
+                        <span>Email</span>
+                      </button>
+                    </th>
+                    <th scope='col' className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      Title
+                    </th>
+                    <th scope='col' className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      Reason
+                    </th>
+                    <th scope='col' className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className='bg-white divide-y divide-gray-200 '>
                   {items?.map(item => (
-                    <tr key={item._id}>
-                    <td>{item?.brandName}</td>
-                   {
-                    item?.recommended.map(comment => {
-                      <>
-                         <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {comment.recommendProductName}
-                      </td>
+                    item.recommended.length === 0 ? (
+                      <tr key={item._id}>
+                        <td colSpan="5" className='px-4 py-4 font-bold text-center text-red-500 whitespace-nowrap'>
+                          No recommendations found.
+                        </td>
+                      </tr>) : (
+                      item.recommended.map(recommendation => (
+                        <tr key={recommendation?._id}>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                            {moment(recommendation.deadline).format('YYYY-MM-DD')}
+                          </td>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                            {recommendation.recommendProductName}
+                          </td>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                            {recommendation.userEmail}
+                          </td>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                            {recommendation.title}
+                          </td>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                            {recommendation.recommendReason}
 
-                      <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {/* {new Date(bid.deadline).toLocaleDateString()} */}
-                      </td>
+                          </td>
+                          <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                          <button onClick={() => handleDelete(recommendation?.queryId)}>
+                          <MdDelete />
+                        </button>
 
-                      <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {comment.title}
-                      </td>
-                      <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        5
-                      </td>
-                      </>
+                          </td>
 
-
-                    })
-                   }
-                    
-                
-                    </tr>
+                        </tr>
+                      ))
+                    )
                   ))}
                 </tbody>
-            </table>
-         <div>
-         {
-                    items?.map(comment => {
-
-                    <>
-                    
-                    <div>
-                      {
-                        comment.recommended.map(comments =>{
-                          <p>{comments.recommendProductName}</p>
-                        })
-                      }
-                    </div>
-                    
-                    
-                    </>
-
-
-                    })
-                    
-            }
-         </div>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 }
 
-export default MyRecommendation
+export default MyRecommendation;

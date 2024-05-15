@@ -1,8 +1,8 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment';
-import { Button } from '@material-tailwind/react';
+import { Button, Spinner } from '@material-tailwind/react';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
@@ -15,7 +15,12 @@ const AllQyeryDetails = () => {
   const allQuery = useLoaderData();
   const [startDate, setStartDate] = useState(new Date(Date.now()))
   const { user } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+ const navigate = useNavigate();
+
+
 
   const { _id, image, deadline, itemName, brandName, shortDescription, queryTitle, posterInfo, recommended
   } = allQuery
@@ -40,6 +45,7 @@ const AllQyeryDetails = () => {
     const deadline = startDate;
     const userEmail = user.email;
     const userName = user.displayName;
+    const photo = user?.photoURL;
 
     const recommendationData = 
     {  queryId,
@@ -52,8 +58,10 @@ const AllQyeryDetails = () => {
        deadline,
        userEmail,
        userName,
+       photo,
        posterInfo
       }
+      setLoading(true);
   
 
     try {
@@ -62,6 +70,9 @@ const AllQyeryDetails = () => {
       console.log(recommendationData)
       toast.success('Comment added Successfully!')
       form.reset();
+      setLoading(false)
+      navigate(location?.state && location.state );
+
    
     } catch (err) {
       toast.error(err.response.data)
@@ -71,15 +82,19 @@ const AllQyeryDetails = () => {
 
 
   return (
-    <section className='max-w-[1250px] mx-auto'>
-<div className='flex flex-col  lg:flex-row gap-4'>
+    <section className='max-w-[1250px] mx-auto space-y-5'>
+    {
+            loading ? (<div className="flex justify-center items-center flex-col h-full p-24">
+            <Spinner className="h-16 w-16 text-gray-900/50" />
+              </div>) : ( <>
+    <div className='flex flex-col  lg:flex-row gap-4'>
 
 
       {/* Poster Details */}
 
       <div className="w-full lg:w-[50%]  px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <img className="object-cover w-full h-[350px] mb-4" src={image} alt="Product" />
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
 
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             {moment(deadline).format('MMMM Do YYYY, h:mm:ss a')}
@@ -94,7 +109,7 @@ const AllQyeryDetails = () => {
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex  flex-col lg:flex-row items-center justify-between mt-4">
           <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline" tabindex="0" role="link">{itemName}</a>
 
           <div className="flex items-center gap-2">
@@ -192,8 +207,10 @@ const AllQyeryDetails = () => {
 </div>
 
 <div>
+  <h1 className='text-center font-bold mb-5 text-lg'>Comment Section</h1>
   <AllRecommend recommended={recommended}></AllRecommend>
 </div>
+    </>          )}
     </section>
   )
 }
