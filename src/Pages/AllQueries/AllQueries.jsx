@@ -1,14 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
 import { BsFillGridFill } from "react-icons/bs";
 import { BsFillGrid3X2GapFill } from "react-icons/bs";
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import axios from 'axios';
 
 const AllQueries = () => {
-  const loadedItems = useLoaderData();
-  console.log(loadedItems)
-  const [allQueries, setallQueries] = useState(loadedItems);
+  const [sort, setSort] = useState('')
+  const [search, setSearch] = useState('')
+  const [searchText, setSearchText] = useState('')
+  const [allQueries, setallQueries] = useState([]);
   const [layout, setLayout] = useState('3-column');
+
+
+  useEffect(() => {
+
+    axios.get(`${import.meta.env.VITE_API_URL}/getSingleQuery?sort=${sort}&search=${search}`)
+        .then(res =>
+         { console.log(res.data)
+          setallQueries(res.data)})
+    }, [sort, search])
+
+    const handleSearch = e => {
+      e.preventDefault()
+      setSearch(searchText)
+    }
+
+    console.log(search)
 
   const handleLayoutChange = (newLayout) => {
     setLayout(newLayout);
@@ -16,6 +35,8 @@ const AllQueries = () => {
   return (
     <section className='max-w-6xl mx-auto'>
       <h1 className='text-center font-bold text-xl mb-3'>All Queries</h1>
+    
+
       <div className='flex justify-center items-center gap-3 mb-5'>
         <button onClick={() => handleLayoutChange('3-column')}><BsFillGrid3X2GapFill className='text-lg' /></button>
         <button onClick={() => handleLayoutChange('2-column')} ><BsFillGridFill /></button>
@@ -23,6 +44,39 @@ const AllQueries = () => {
 
 
       {layout === '3-column' && (
+        <>
+        <form onSubmit={handleSearch}>
+            <div className='flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
+              <input
+                className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
+                type='text'
+                onChange={e => setSearchText(e.target.value)}
+                value={searchText}
+                name='search'
+                placeholder='Enter Job Title'
+                aria-label='Enter Job Title'
+              />
+
+              <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'>
+                Search
+              </button>
+            </div>
+          </form>
+          <div>
+            <select
+              onChange={e => {
+                setSort(e.target.value)
+              }}
+              value={sort}
+              name='sort'
+              id='sort'
+              className='border p-4 rounded-md'
+            >
+              <option value=''>Sort By Deadline</option>
+              <option value='dsc'>Descending Order</option>
+              <option value='asc'>Ascending Order</option>
+            </select>
+          </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {
             allQueries.map(item =>
@@ -71,6 +125,7 @@ const AllQueries = () => {
               </div>)
           }
         </div>
+        </>
       )}
 
 
@@ -107,6 +162,14 @@ const AllQueries = () => {
                             </p>
                           </div>
                         </div>
+                        <div className='flex justify-between items-center mt-4'>
+                        <div>
+                          <p className='font-bold'>Comment: {item?.recommended.length}</p>
+                        </div>
+                        <Link to={`/queryDetails/${item?._id}`}>
+                          <button className='text-sm bg-[#23BE0A] p-2 text-white rounded-md'> Recommend</button>
+                        </Link>
+                      </div>
 
                       </div>
                     </div>

@@ -191,7 +191,7 @@ const AllQyeryDetails = () => {
 </div>
 
 <div>
-  <AllRecommend></AllRecommend>
+  <AllRecommend ></AllRecommend>
 </div>
     </section>
   )

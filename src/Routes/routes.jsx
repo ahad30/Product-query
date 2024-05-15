@@ -32,8 +32,6 @@ export const routes = createBrowserRouter([
       {
         path: "/allQueries",
         element:  <AllQueries/>,
-        loader: () => 
-        fetch(`${import.meta.env.VITE_API_URL}/getSingleQuery`)
       },
 
       {
